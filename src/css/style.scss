@@ -1,11 +1,12 @@
 $titleHeight: 22px;
-$titleBackgroundColor: #ddd;
-$leftWidth: 250px;
+$titleBackgroundColor: #eee;
+$leftWidth: 300px;
 $rightWidth: calc(100% - #{$leftWidth});
-$leftBorderRightColor: $titleBackgroundColor;
-$statusAndWriteHeight: 50px;
+$borderColor: #ccc;
+$statusAndWriteHeight: 60px;
 $personsAndMessagesHeight: calc(100% - #{$statusAndWriteHeight});
-$statusAndWriteBorderTopColor: $leftBorderRightColor;
+$personHeight: 80px;
+$personSelectedBackgroundColor: #f2f2f2;
 
 * {
   box-sizing: border-box;
@@ -20,18 +21,42 @@ body, html, #root, #root2 {
   height: 100%;
 }
 
+#title {
+  font-size: 12px;
+  text-align: center;
+  height: $titleHeight;
+  line-height: $titleHeight;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  background-color: $titleBackgroundColor;
+  border-bottom: 1px solid $borderColor;
+}
+
+#app {
+  height: calc(100% - #{$titleHeight});
+}
+
 #left {
   float: left;
   height: 100%;
   width: $leftWidth;
-  border-right: 1px solid $leftBorderRightColor;
+  border-right: 1px solid $borderColor;
+
   #persons {
     overflow-y: auto;
     height: $personsAndMessagesHeight;
+
+    .person {
+      height: $personHeight;
+      &.selected {
+        background-color: $personSelectedBackgroundColor;
+      }
+    }
   }
+
   #status {
     height: $statusAndWriteHeight;
-    border-top: 1px solid $statusAndWriteBorderTopColor;
+    border-top: 1px solid $borderColor;
   }
 }
 
@@ -39,26 +64,14 @@ body, html, #root, #root2 {
   float: left;
   height: 100%;
   width: $rightWidth;
+
   #messages {
     overflow-y: auto;
     height: $personsAndMessagesHeight;
   }
+
   #write {
     height: $statusAndWriteHeight;
-    border-top: 1px solid $statusAndWriteBorderTopColor;
+    border-top: 1px solid $borderColor;
   }
-}
-
-#app {
-  height: calc(100% - #{$titleHeight});
-}
-
-#title {
-  font-size: 11px;
-  text-align: center;
-  height: $titleHeight;
-  line-height: $titleHeight;
-  -webkit-app-region: drag;
-  -webkit-user-select: none;
-  background-color: $titleBackgroundColor;
 }
