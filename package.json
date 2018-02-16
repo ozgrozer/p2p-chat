@@ -34,7 +34,7 @@
   "build": {
     "appId": "com.ozgrozer.p2p-chat",
     "files": [
-      "electron/main.js",
+      "electron/**/*",
       "node_modules",
       "public/**/*"
     ]
