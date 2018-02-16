@@ -1,0 +1,64 @@
+$titleHeight: 22px;
+$titleBackgroundColor: #ddd;
+$leftWidth: 250px;
+$rightWidth: calc(100% - #{$leftWidth});
+$leftBorderRightColor: $titleBackgroundColor;
+$statusAndWriteHeight: 50px;
+$personsAndMessagesHeight: calc(100% - #{$statusAndWriteHeight});
+$statusAndWriteBorderTopColor: $leftBorderRightColor;
+
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+body, html, #root, #root2 {
+  height: 100%;
+}
+
+#left {
+  float: left;
+  height: 100%;
+  width: $leftWidth;
+  border-right: 1px solid $leftBorderRightColor;
+  #persons {
+    overflow-y: auto;
+    height: $personsAndMessagesHeight;
+  }
+  #status {
+    height: $statusAndWriteHeight;
+    border-top: 1px solid $statusAndWriteBorderTopColor;
+  }
+}
+
+#right {
+  float: left;
+  height: 100%;
+  width: $rightWidth;
+  #messages {
+    overflow-y: auto;
+    height: $personsAndMessagesHeight;
+  }
+  #write {
+    height: $statusAndWriteHeight;
+    border-top: 1px solid $statusAndWriteBorderTopColor;
+  }
+}
+
+#app {
+  height: calc(100% - #{$titleHeight});
+}
+
+#title {
+  font-size: 11px;
+  text-align: center;
+  height: $titleHeight;
+  line-height: $titleHeight;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  background-color: $titleBackgroundColor;
+}
