@@ -2,7 +2,7 @@ $titleHeight: 22px;
 $titleBackgroundColor: #eee;
 $leftWidth: 300px;
 $rightWidth: calc(100% - #{$leftWidth});
-$borderColor: #ccc;
+$borderColor: #c1c1c1;
 $statusAndWriteHeight: 60px;
 $personsAndMessagesHeight: calc(100% - #{$statusAndWriteHeight});
 $personHeight: 70px;
@@ -15,6 +15,7 @@ $personNameLineHeight: ($personHeight - 20px) / 2;
   box-sizing: border-box;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
 body {
   margin: 0;
   cursor: default;
@@ -22,6 +23,7 @@ body {
   background-color: #fff;
   -webkit-user-select: none;
 }
+
 body, html, #root, #root2 {
   height: 100%;
 }
