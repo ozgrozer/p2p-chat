@@ -1,5 +1,5 @@
 # p2p chat
-A peer to peer chat app.
+A peer to peer chat app built with [https://reactjs.org/](React), [https://redux.js.org/](Redux) and [https://electronjs.org/](Electron).
 
 ![](screenshot.jpg)
 
