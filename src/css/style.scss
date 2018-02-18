@@ -7,6 +7,9 @@ $statusAndWriteHeight: 60px;
 $personsAndMessagesHeight: calc(100% - #{$statusAndWriteHeight});
 $personHeight: 80px;
 $personSelectedBackgroundColor: #f2f2f2;
+$personLeftWidth: $personHeight;
+$personRightWidth: $leftWidth - $personLeftWidth - 1px;
+$personNameLineHeight: ($personHeight - 20px) / 2;
 
 * {
   box-sizing: border-box;
@@ -48,8 +51,57 @@ body, html, #root, #root2 {
 
     .person {
       height: $personHeight;
+
       &.selected {
         background-color: $personSelectedBackgroundColor;
+      }
+
+      .personLeft {
+        float: left;
+        padding: 10px;
+        width: $personLeftWidth;
+
+        .profilePicture {
+          float: left;
+          width: $personLeftWidth - 20px;
+          height: $personLeftWidth - 20px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .personRight {
+        float: left;
+        color: #aaa;
+        padding: 10px;
+        font-size: 13px;
+        width: $personRightWidth;
+
+        .name {
+          width: 80%;
+          color: #000;
+          float: left;
+          font-weight: bold;
+          overflow: hidden;
+          line-height: $personNameLineHeight;
+        }
+
+        .date {
+          width: 20%;
+          float: right;
+          font-size: 10px;
+          line-height: $personNameLineHeight;
+        }
+
+        .lastMessage {
+          clear: both;
+          overflow: hidden;
+          line-height: $personNameLineHeight;
+        }
       }
     }
   }

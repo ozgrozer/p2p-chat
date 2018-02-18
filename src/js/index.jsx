@@ -22,7 +22,22 @@ class Persons extends React.Component {
 
       return (
         <div key={person['id']} className={className} onClick={this.changeSelectedPerson.bind(this, person['id'])}>
-          {person['name']}
+          <div className='personLeft'>
+            <div className='profilePicture'>
+              <img src='http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png' />
+            </div>
+          </div>
+          <div className='personRight'>
+            <div className='name'>
+              {person['name']}
+            </div>
+            <div className='date'>
+              Sep 03
+            </div>
+            <div className='lastMessage'>
+              message #{person['id']}
+            </div>
+          </div>
         </div>
       )
     })
