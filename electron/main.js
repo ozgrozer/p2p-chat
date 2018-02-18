@@ -10,9 +10,11 @@ if (!isDev) {
 
 const createWindow = () => {
   win = new BrowserWindow({
+    show: false,
     width: 1000,
     height: 600,
-    titleBarStyle: 'hidden'
+    titleBarStyle: 'hidden',
+    backgroundColor: '#fff'
   })
   win.loadURL('http://127.0.0.1:' + appWorkingPort + '/index.html')
   win.once('ready-to-show', () => {
