@@ -3,7 +3,7 @@ const isDev = require('electron-is-dev')
 let win
 
 if (!isDev) {
-  const server = require('./server.js')
+  require('./server.js')
 }
 
 const createWindow = () => {
@@ -12,7 +12,7 @@ const createWindow = () => {
     height: 600,
     titleBarStyle: 'hidden'
   })
-  win.loadURL('http://127.0.0.1:35797')
+  win.loadURL('http://127.0.0.1:35797/index.html')
   win.once('ready-to-show', () => {
     win.show()
   })
