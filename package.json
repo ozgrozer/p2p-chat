@@ -4,8 +4,9 @@
   "author": "ozgrozer",
   "version": "0.0.1",
   "main": "electron/main.js",
+  "appWorkingPort": "35797",
   "scripts": {
-    "start-parcel": "parcel ./src/index.html -d ./public -p 35797",
+    "start-parcel": "parcel ./src/index.html -d ./public -p $npm_package_appWorkingPort",
     "start-electron": "electron .",
     "build": "npm run build-parcel && npm run build-electron",
     "build-parcel": "parcel build ./src/index.html -d ./public --public-url ./",

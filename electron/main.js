@@ -1,5 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 const isDev = require('electron-is-dev')
+const path = require('path')
+const appWorkingPort = require(path.join(__dirname, '..', 'package.json'))['appWorkingPort']
 let win
 
 if (!isDev) {
@@ -12,7 +14,7 @@ const createWindow = () => {
     height: 600,
     titleBarStyle: 'hidden'
   })
-  win.loadURL('http://127.0.0.1:35797/index.html')
+  win.loadURL('http://127.0.0.1:' + appWorkingPort + '/index.html')
   win.once('ready-to-show', () => {
     win.show()
   })

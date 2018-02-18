@@ -1,10 +1,10 @@
 const path = require('path')
 const express = require('express')
 const app = express()
-const port = 35797
+const appWorkingPort = require(path.join(__dirname, '..', 'package.json'))['appWorkingPort']
 
-app.listen(port)
+app.listen(appWorkingPort)
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../public', req.originalUrl))
+  res.sendFile(path.join(__dirname, '..', 'public', req.originalUrl))
 })
