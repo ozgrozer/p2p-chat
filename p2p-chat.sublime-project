@@ -1,0 +1,14 @@
+{
+  "folders":
+  [
+    {
+      "folder_exclude_patterns":
+      [
+        ".cache",
+        "node_modules",
+        "releases"
+      ],
+      "path": "."
+    }
+  ]
+}

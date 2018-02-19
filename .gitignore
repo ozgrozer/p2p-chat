@@ -5,3 +5,4 @@ node_modules
 public
 releases
 yarn-error.log
+*.sublime-workspace
