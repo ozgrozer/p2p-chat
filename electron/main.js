@@ -11,8 +11,8 @@ if (!isDev) {
 const createWindow = () => {
   win = new BrowserWindow({
     show: false,
-    width: 1000,
-    height: 600,
+    width: 960,
+    height: 700,
     titleBarStyle: 'hidden',
     backgroundColor: '#fff'
   })

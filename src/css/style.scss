@@ -1,15 +1,16 @@
 $titleHeight: 22px;
 $titleBackgroundColor: #eee;
-$leftWidth: 300px;
+$leftWidth: 320px;
 $rightWidth: calc(100% - #{$leftWidth});
-$borderColor: #c1c1c1;
+$borderColor: #e8e8e8;
 $statusAndWriteHeight: 60px;
 $personsAndMessagesHeight: calc(100% - #{$statusAndWriteHeight});
-$personHeight: 70px;
-$personSelectedBackgroundColor: #f2f2f2;
-$personLeftWidth: $personHeight;
-$personRightWidth: $leftWidth - $personLeftWidth - 1px;
-$personNameLineHeight: ($personHeight - 20px) / 2;
+$personHeight: 80px;
+$personLeftAndRightPadding: 30px;
+$personSelectedBackgroundColor: #fafafa;
+$personLeftWidth: 50px;
+$personRightWidth: calc(100% - #{$personLeftWidth});
+$personNameLineHeight: $personLeftWidth / 2;
 
 * {
   box-sizing: border-box;
@@ -55,6 +56,7 @@ body, html, #root, #root2 {
 
     .person {
       height: $personHeight;
+      padding: 0 $personLeftAndRightPadding;
 
       &.selected {
         background-color: $personSelectedBackgroundColor;
@@ -62,36 +64,30 @@ body, html, #root, #root2 {
 
       .personLeft {
         float: left;
-        padding: 10px;
         width: $personLeftWidth;
 
         .profilePicture {
-          float: left;
-          width: $personLeftWidth - 20px;
-          height: $personLeftWidth - 20px;
-
-          img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
+          border-radius: 50%;
+          width: $personLeftWidth;
+          height: $personLeftWidth;
+          margin-top: ($personHeight - $personLeftWidth) / 2;
         }
       }
 
       .personRight {
         float: left;
         color: #aaa;
-        padding: 10px;
         font-size: 13px;
-        padding-left: 0;
+        padding-left: 15px;
         width: $personRightWidth;
+        padding-top: ($personHeight - $personLeftWidth) / 2;
 
         .name {
           width: 80%;
           color: #000;
           float: left;
-          font-weight: bold;
           overflow: hidden;
+          font-weight: bold;
           line-height: $personNameLineHeight;
         }
 
