@@ -1,16 +1,19 @@
 $titleHeight: 22px;
-$titleBackgroundColor: #eee;
 $leftWidth: 320px;
 $rightWidth: calc(100% - #{$leftWidth});
-$borderColor: #e8e8e8;
-$statusAndWriteHeight: 60px;
-$personsAndMessagesHeight: calc(100% - #{$statusAndWriteHeight});
-$personHeight: 80px;
+$profileAndWriteHeight: 80px;
+$personsHeight: calc(100% - #{$profileAndWriteHeight});
+$messagesHeight: calc(100% - #{$profileAndWriteHeight});
+
+$personHeight: $profileAndWriteHeight;
 $personLeftAndRightPadding: 30px;
-$personSelectedBackgroundColor: #fafafa;
 $personLeftWidth: 50px;
 $personRightWidth: calc(100% - #{$personLeftWidth});
 $personNameLineHeight: $personLeftWidth / 2;
+
+$titleBackgroundColor: #eee;
+$borderColor: #e8e8e8;
+$personSelectedBackgroundColor: #fafafa;
 
 * {
   box-sizing: border-box;
@@ -36,12 +39,64 @@ body, html, #root, #root2 {
   line-height: $titleHeight;
   -webkit-app-region: drag;
   -webkit-user-select: none;
-  background-color: $titleBackgroundColor;
   border-bottom: 1px solid $borderColor;
+  background-color: $titleBackgroundColor;
 }
 
 #app {
   height: calc(100% - #{$titleHeight});
+}
+
+.person {
+  height: $personHeight;
+  padding: 0 $personLeftAndRightPadding;
+
+  &.selected {
+    background-color: $personSelectedBackgroundColor;
+  }
+
+  .personLeft {
+    float: left;
+    width: $personLeftWidth;
+
+    .personPicture {
+      border-radius: 50%;
+      width: $personLeftWidth;
+      height: $personLeftWidth;
+      margin-top: ($personHeight - $personLeftWidth) / 2;
+    }
+  }
+
+  .personRight {
+    float: left;
+    color: #aaa;
+    font-size: 13px;
+    padding-left: 15px;
+    width: $personRightWidth;
+    padding-top: ($personHeight - $personLeftWidth) / 2;
+
+    .personName {
+      width: 80%;
+      color: #000;
+      float: left;
+      overflow: hidden;
+      font-weight: bold;
+      line-height: $personNameLineHeight;
+    }
+
+    .personLastMessageDate {
+      width: 20%;
+      float: right;
+      font-size: 10px;
+      line-height: $personNameLineHeight;
+    }
+
+    .personLastMessage {
+      clear: both;
+      overflow: hidden;
+      line-height: $personNameLineHeight;
+    }
+  }
 }
 
 #left {
@@ -50,66 +105,21 @@ body, html, #root, #root2 {
   width: $leftWidth;
   border-right: 1px solid $borderColor;
 
-  #persons {
-    overflow-y: auto;
-    height: $personsAndMessagesHeight;
+  #myProfile {
+    border-bottom: 1px solid $borderColor;
 
     .person {
-      height: $personHeight;
-      padding: 0 $personLeftAndRightPadding;
-
-      &.selected {
-        background-color: $personSelectedBackgroundColor;
-      }
-
-      .personLeft {
-        float: left;
-        width: $personLeftWidth;
-
-        .profilePicture {
-          border-radius: 50%;
-          width: $personLeftWidth;
-          height: $personLeftWidth;
-          margin-top: ($personHeight - $personLeftWidth) / 2;
-        }
-      }
-
-      .personRight {
-        float: left;
-        color: #aaa;
-        font-size: 13px;
-        padding-left: 15px;
-        width: $personRightWidth;
-        padding-top: ($personHeight - $personLeftWidth) / 2;
-
-        .name {
-          width: 80%;
-          color: #000;
-          float: left;
-          overflow: hidden;
-          font-weight: bold;
-          line-height: $personNameLineHeight;
-        }
-
-        .date {
-          width: 20%;
-          float: right;
-          font-size: 10px;
-          line-height: $personNameLineHeight;
-        }
-
-        .lastMessage {
-          clear: both;
-          overflow: hidden;
-          line-height: $personNameLineHeight;
-        }
-      }
+      @extend .person;
     }
   }
 
-  #status {
-    height: $statusAndWriteHeight;
-    border-top: 1px solid $borderColor;
+  #persons {
+    overflow-y: auto;
+    height: $personsHeight;
+
+    .person {
+      @extend .person;
+    }
   }
 }
 
@@ -118,13 +128,42 @@ body, html, #root, #root2 {
   height: 100%;
   width: $rightWidth;
 
-  #messages {
-    overflow-y: auto;
-    height: $personsAndMessagesHeight;
+  #messagesContainer {
+    height: $personsHeight;
+
+    #selectedPersonProfile {
+      border-bottom: 1px solid $borderColor;
+    }
+
+    #messages {
+      overflow-y: auto;
+      height: $messagesHeight;
+      padding: $personLeftAndRightPadding;
+
+      .message {
+        padding: 15px;
+        margin-bottom: 15px;
+        &.in {
+          background-color: #eee;
+        }
+        &.out {
+          background-color: #ddd;
+        }
+      }
+    }
   }
 
   #write {
-    height: $statusAndWriteHeight;
+    height: $profileAndWriteHeight;
     border-top: 1px solid $borderColor;
+
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      padding: 0 $personLeftAndRightPadding;
+    }
   }
 }

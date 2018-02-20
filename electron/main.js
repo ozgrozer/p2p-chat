@@ -12,7 +12,7 @@ const createWindow = () => {
   win = new BrowserWindow({
     show: false,
     width: 960,
-    height: 700,
+    height: 663,
     titleBarStyle: 'hidden',
     backgroundColor: '#fff'
   })

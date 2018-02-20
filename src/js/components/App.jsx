@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import MyProfile from './MyProfile'
 import Persons from './Persons'
 import Messages from './Messages'
 
@@ -16,17 +17,17 @@ class App extends React.Component {
 
         <div id='app'>
           <div id='left'>
-            <Persons />
+            <MyProfile />
 
-            <div id='status'>status</div>
+            <Persons />
           </div>
 
           <div id='right'>
-            <div id='messages'>
-              <Messages />
-            </div>
+            <Messages />
 
-            <div id='write'>write</div>
+            <div id='write'>
+              <input type='text' placeholder='Write a message...' />
+            </div>
           </div>
         </div>
       </div>

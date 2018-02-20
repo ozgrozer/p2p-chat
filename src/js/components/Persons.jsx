@@ -6,7 +6,7 @@ import {changeSelectedPerson} from './../actions/index'
 @connect((store) => {
   return {
     persons: store.persons.list,
-    selectedPersonId: store.persons.selectedPersonId
+    selectedPersonIndex: store.persons.selectedPersonIndex
   }
 })
 
@@ -17,28 +17,31 @@ class Persons extends React.Component {
 
   render () {
     const persons = this.props.persons.map(person => {
-      const className = person['id'] === this.props.selectedPersonId
+      const className = person.index === this.props.selectedPersonIndex
       ? 'person selected'
       : 'person'
 
       return (
         <div
-          key={person['id']}
+          key={person.index}
           className={className}
-          onClick={this.changeSelectedPerson.bind(this, person['id'])}
+          onClick={this.changeSelectedPerson.bind(this, person.index)}
         >
           <div className='personLeft'>
-            <img className='profilePicture' src={`https://randomuser.me/api/portraits/men/${person['id']}.jpg`} />
+            <img className='personPicture' src={`https://randomuser.me/api/portraits/men/${person.index}.jpg`} />
           </div>
+
           <div className='personRight'>
-            <div className='name'>
-              {person['name']}
+            <div className='personName'>
+              {person.name}
             </div>
-            <div className='date'>
-              Sep {person['id']}
+
+            <div className='personLastMessageDate'>
+              {person.lastMessageDate}
             </div>
-            <div className='lastMessage'>
-              message #{person['id']}
+
+            <div className='personLastMessage'>
+              {person.lastMessage}
             </div>
           </div>
         </div>
