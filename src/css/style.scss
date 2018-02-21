@@ -11,9 +11,15 @@ $personLeftWidth: 50px;
 $personRightWidth: calc(100% - #{$personLeftWidth});
 $personNameLineHeight: $personLeftWidth / 2;
 
-$titleBackgroundColor: #eee;
-$borderColor: #e8e8e8;
-$personSelectedBackgroundColor: #fafafa;
+$fontSize1: 13px; /* default font size */
+$fontSize2: 10px; /* person's last message time */
+
+$gray1: #eee; /* title background color */
+$gray2: #e8e8e8; /* border color */
+$gray3: #f7f7f7; /* selected person background color */
+$gray4: #aaa; /* my status color, person status color, person last message color, person last message time color */
+$gray5: #e5e5ea; /* incoming message background color */
+$blue1: #39a1f9; /* or #47b7fb, outgoing message background color */
 
 * {
   box-sizing: border-box;
@@ -28,19 +34,22 @@ body {
   -webkit-user-select: none;
 }
 
+body, input {
+  font-size: $fontSize1;
+}
+
 body, html, #root, #root2 {
   height: 100%;
 }
 
 #title {
-  font-size: 12px;
   text-align: center;
   height: $titleHeight;
-  line-height: $titleHeight;
   -webkit-app-region: drag;
+  background-color: $gray1;
+  line-height: $titleHeight;
   -webkit-user-select: none;
-  border-bottom: 1px solid $borderColor;
-  background-color: $titleBackgroundColor;
+  border-bottom: 1px solid $gray2;
 }
 
 #app {
@@ -52,7 +61,7 @@ body, html, #root, #root2 {
   padding: 0 $personLeftAndRightPadding;
 
   &.selected {
-    background-color: $personSelectedBackgroundColor;
+    background-color: $gray3;
   }
 
   .personLeft {
@@ -69,8 +78,6 @@ body, html, #root, #root2 {
 
   .personRight {
     float: left;
-    color: #aaa;
-    font-size: 13px;
     padding-left: 15px;
     width: $personRightWidth;
     padding-top: ($personHeight - $personLeftWidth) / 2;
@@ -84,15 +91,18 @@ body, html, #root, #root2 {
       line-height: $personNameLineHeight;
     }
 
-    .personLastMessageDate {
+    .personLastMessageTime {
       width: 20%;
       float: right;
-      font-size: 10px;
+      color: $gray4;
+      text-align: right;
+      font-size: $fontSize2;
       line-height: $personNameLineHeight;
     }
 
     .personLastMessage {
       clear: both;
+      color: $gray4;
       overflow: hidden;
       line-height: $personNameLineHeight;
     }
@@ -103,10 +113,10 @@ body, html, #root, #root2 {
   float: left;
   height: 100%;
   width: $leftWidth;
-  border-right: 1px solid $borderColor;
+  border-right: 1px solid $gray2;
 
   #myProfile {
-    border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid $gray2;
 
     .person {
       @extend .person;
@@ -132,7 +142,7 @@ body, html, #root, #root2 {
     height: $personsHeight;
 
     #selectedPersonProfile {
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 1px solid $gray2;
     }
 
     #messages {
@@ -141,28 +151,35 @@ body, html, #root, #root2 {
       padding: $personLeftAndRightPadding;
 
       .message {
-        padding: 15px;
+        clear: both;
+        padding: 10px 15px;
+        border-radius: 6px;
         margin-bottom: 15px;
+        max-width: calc(100% - 30%);
+
         &.in {
-          background-color: #eee;
+          float: left;
+          background-color: $gray5;
         }
+
         &.out {
-          background-color: #ddd;
+          color: #fff;
+          float: right;
+          background-color: $blue1;
         }
       }
     }
   }
 
   #write {
+    border-top: 1px solid $gray2;
     height: $profileAndWriteHeight;
-    border-top: 1px solid $borderColor;
 
     input {
       width: 100%;
       height: 100%;
       border: none;
       outline: none;
-      font-size: 15px;
       padding: 0 $personLeftAndRightPadding;
     }
   }

@@ -36,8 +36,8 @@ class Persons extends React.Component {
               {person.name}
             </div>
 
-            <div className='personLastMessageDate'>
-              {person.lastMessageDate}
+            <div className='personLastMessageTime'>
+              {person.lastMessageTime}
             </div>
 
             <div className='personLastMessage'>
