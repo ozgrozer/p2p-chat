@@ -34,7 +34,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "sqlite3": "^3.1.13"
   },
   "build": {
     "appId": "com.$npm_package_author.$npm_package_name",
