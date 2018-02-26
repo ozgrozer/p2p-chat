@@ -17,14 +17,12 @@ class Persons extends React.Component {
 
   render () {
     const persons = this.props.persons.map(person => {
-      const className = person.index === this.props.selectedPersonIndex
-      ? 'person selected'
-      : 'person'
+      const selectedClass = person.index === this.props.selectedPersonIndex ? 'selected' : ''
 
       return (
         <div
           key={person.index}
-          className={className}
+          className={`person ${selectedClass}`}
           onClick={this.changeSelectedPerson.bind(this, person.index)}
         >
           <div className='personLeft'>
