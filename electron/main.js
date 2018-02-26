@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 const appWorkingPort = require(path.join(__dirname, '..', 'package.json'))['appWorkingPort']
@@ -22,6 +22,10 @@ const createWindow = () => {
   })
   win.on('closed', () => {
     win = null
+  })
+
+  ipcMain.on('mainWindowLoaded', () => {
+    console.log('mainWindowLoaded')
   })
 }
 
