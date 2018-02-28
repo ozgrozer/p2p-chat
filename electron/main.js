@@ -1,12 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
-const isDev = require('electron-is-dev')
 const path = require('path')
-const appWorkingPort = require(path.join(__dirname, '..', 'package.json'))['appWorkingPort']
-let win
+const packageJson = require(path.join(__dirname, '..', 'package.json'))
+require('./server.js')
 
-if (!isDev) {
-  require('./server.js')
-}
+let win
+const appWorkingPort = packageJson.appWorkingPort
 
 const createWindow = () => {
   win = new BrowserWindow({
