@@ -6,7 +6,7 @@
   "main": "electron/main.js",
   "appWorkingPort": "35797",
   "scripts": {
-    "start-parcel": "parcel ./src/index.html -d ./public -p $npm_package_appWorkingPort",
+    "start-parcel": "parcel ./src/index.html -d ./public",
     "start-electron": "electron .",
     "build": "npm run build-parcel && npm run build-electron",
     "build-parcel": "parcel build ./src/index.html -d ./public --public-url ./",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.8.2",
-    "electron-builder": "^20.0.8",
+    "electron-builder": "^20.2.0",
     "mkdirp": "^0.5.1"
   },
   "dependencies": {
