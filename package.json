@@ -3,13 +3,13 @@
   "description": "A peer to peer chat app.",
   "author": "ozgrozer",
   "version": "0.0.1",
-  "main": "electron/main.js",
+  "main": "./src/electron/main.js",
   "appWorkingPort": "35797",
   "scripts": {
-    "start-parcel": "parcel ./src/index.html -d ./public",
+    "start-parcel": "parcel ./src/frontend/index.html -d ./public",
     "start-electron": "electron .",
     "build": "npm run build-parcel && npm run build-electron",
-    "build-parcel": "parcel build ./src/index.html -d ./public --public-url ./",
+    "build-parcel": "parcel build ./src/frontend/index.html -d ./public --public-url ./",
     "build-electron": "build -m && npm run release",
     "release": "npm run release:mac",
     "prerelease:mac": "rm -rf releases/$npm_package_version/mac && mkdirp releases/$npm_package_version/mac",
@@ -42,7 +42,8 @@
   "build": {
     "appId": "com.$npm_package_author.$npm_package_name",
     "files": [
-      "electron/**/*",
+      "src/backend/**/*",
+      "src/electron/**/*",
       "node_modules",
       "public/**/*"
     ]

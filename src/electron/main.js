@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const packageJson = require(path.join(__dirname, '..', 'package.json'))
-require('./server.js')
+const packageJson = require(path.join(__dirname, '..', '..', 'package.json'))
+require(path.join(__dirname, '..', 'backend', 'server.js'))
 
 let win
 const appWorkingPort = packageJson.appWorkingPort
