@@ -1,24 +1,37 @@
 const path = require('path')
 const express = require('express')
-const electron = require('electron')
-const sqlite3 = require('sqlite3').verbose()
 const packageJson = require(path.join(__dirname, '..', '..', 'package.json'))
+const Store = require('electron-store-data')
 
 const app = express()
-const userFolderPath = (electron.app || electron.remote.app).getPath('userData')
-const dbFilePath = path.join(userFolderPath, 'db.sqlite')
-const db = new sqlite3.Database(dbFilePath)
+const appName = packageJson.name
 const appWorkingPort = packageJson.appWorkingPort
 
-db.serialize(() => {
-  db.run('create table if not exists persons (id integer primary key, name text, statusMessage text)')
-  db.run('create table if not exists messages (id integer primary key, personId integer, direction text, text text, time int)')
+const storeSettings = new Store({
+  path: `${appName}.settings`,
+  defaults: {
+    app: {
+      launched: 0
+    },
+    window: {
+      lorem: 'ipsum'
+    }
+  }
 })
-db.close()
+
+const launchCount = storeSettings.get('app').launched
+
+if (!launchCount) {
+  require('./firstLaunch')
+}
 
 app.use('/public', express.static('public'))
 app.listen(appWorkingPort)
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'public', req.originalUrl))
+})
+
+storeSettings.set('app', {
+  launched: launchCount + 1
 })

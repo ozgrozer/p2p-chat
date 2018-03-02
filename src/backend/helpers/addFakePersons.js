@@ -4,9 +4,12 @@ const axios = require('axios')
 const electron = require('electron')
 const sqlite3 = require('sqlite3').verbose()
 const mkdirp = require('mkdirp')
+const packageJson = require(path.join(__dirname, '..', '..', '..', 'package.json'))
 
+const appName = packageJson.name
 const userFolderPath = (electron.app || electron.remote.app).getPath('userData')
-const dbFilePath = path.join(userFolderPath, 'db.sqlite')
+const appFolderPath = path.join(userFolderPath, appName)
+const dbFilePath = path.join(appFolderPath, 'db.sqlite')
 const db = new sqlite3.Database(dbFilePath)
 
 const getRandomPerson = () => {
@@ -37,7 +40,7 @@ const addToDatabase = (opts) => {
 
 const createFolder = (opts) => {
   return new Promise((resolve, reject) => {
-    const personFolderPath = path.join(userFolderPath, 'persons', opts.personId.toString())
+    const personFolderPath = path.join(appFolderPath, 'persons', opts.personId.toString())
     mkdirp(personFolderPath, (err) => {
       if (err) throw err
       resolve({
@@ -56,11 +59,10 @@ const downloadImage = (opts) => {
       url: opts.pictureUrl,
       responseType: 'arraybuffer'
     }).then((res) => {
-      const fileName = `${opts.personId}.jpg`
-      const filePath = path.join(opts.personFolderPath, fileName)
+      const filePath = path.join(opts.personFolderPath, 'profile.jpg')
       const fileContent = res.data
       fs.writeFileSync(filePath, fileContent)
-      resolve(fileName)
+      resolve(filePath)
     })
   })
 }
