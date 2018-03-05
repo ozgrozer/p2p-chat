@@ -1,52 +1,58 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 @connect((store) => {
   return {
     persons: store.persons.list,
-    selectedPersonIndex: store.persons.selectedPersonIndex
+    selectedPersonId: store.persons.selectedPersonId
   }
 })
 
 class Messages extends React.Component {
   render () {
-    const getMessages = this.props.persons[this.props.selectedPersonIndex].messages
-    const messages = getMessages.map((message, i) => {
+    const person = this.props.persons[this.props.selectedPersonId]
+
+    if (typeof person === 'object') {
+      const person = this.props.persons[this.props.selectedPersonId]
+      const messages = person.messages.map((message, i) => {
+        return (
+          <div key={i} className={`message ${message.direction}`}>
+            {message.text}
+          </div>
+        )
+      })
+
       return (
-        <div key={i} className={`message ${message.direction}`}>
-          {message.text}
-        </div>
-      )
-    })
-
-    return (
-      <div id='messagesContainer'>
-        <div id='selectedPersonProfile'>
-          <div className='person'>
-            <div className='personLeft'>
-              <img
-                className='personPicture'
-                src={`https://randomuser.me/api/portraits/men/${this.props.selectedPersonIndex}.jpg`}
-              />
-            </div>
-
-            <div className='personRight'>
-              <div className='personName'>
-                {this.props.persons[this.props.selectedPersonIndex].name}
+        <div id='messagesContainer'>
+          <div id='selectedPersonProfile'>
+            <div className='person'>
+              <div className='personLeft'>
+                <img
+                  className='personPicture'
+                  src={`https://randomuser.me/api/portraits/men/${this.props.selectedPersonId}.jpg`}
+                />
               </div>
 
-              <div className='personLastMessage'>
-                {this.props.persons[this.props.selectedPersonIndex].status}
+              <div className='personRight'>
+                <div className='personName'>
+                  {person.name}
+                </div>
+
+                <div className='personLastMessage'>
+                  {person.statusMessage}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div id='messages'>
-          {messages}
+          <div id='messages'>
+            {messages}
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return <br />
+    }
   }
 }
 

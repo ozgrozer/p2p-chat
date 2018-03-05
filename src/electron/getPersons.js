@@ -13,10 +13,20 @@ module.exports = new Promise((resolve, reject) => {
   db.all('select id, name, statusMessage from persons', (err, rows) => {
     if (err) throw err
 
-    let data = {}
+    let data = []
 
     rows.forEach((row) => {
-      data[row.id] = row.name
+      data[row.id] = {
+        id: row.id,
+        name: row.name,
+        statusMessage: row.statusMessage,
+        messages: [
+          { direction: 'out', text: 'outgoing ' + row.id, time: 1519134357 },
+          { direction: 'in', text: 'incoming ' + row.id, time: 1519134358 }
+        ],
+        lastMessage: 'Message ' + row.id,
+        lastMessageTime: 'Today'
+      }
     })
 
     resolve(data)

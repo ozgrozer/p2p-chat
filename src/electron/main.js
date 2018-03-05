@@ -23,8 +23,7 @@ const createWindow = () => {
   })
 
   ipcMain.on('getPersons', (event, arg) => {
-    const getPersons = require('./getPersons')
-    getPersons.then((res) => {
+    require('./getPersons').then((res) => {
       event.sender.send('persons', res)
     })
   })
