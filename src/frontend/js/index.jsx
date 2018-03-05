@@ -8,7 +8,10 @@ import App from './components/App'
 const electron = window.require('electron')
 const ipcRenderer = electron.ipcRenderer
 
-ipcRenderer.send('mainWindowLoaded')
+ipcRenderer.send('getPersons')
+ipcRenderer.on('persons', (event, arg) => {
+  console.log(arg)
+})
 
 ReactDOM.render(
   <Provider store={store}>

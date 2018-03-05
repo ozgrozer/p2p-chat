@@ -22,8 +22,11 @@ const createWindow = () => {
     win = null
   })
 
-  ipcMain.on('mainWindowLoaded', () => {
-    console.log('mainWindowLoaded')
+  ipcMain.on('getPersons', (event, arg) => {
+    const getPersons = require('./getPersons')
+    getPersons.then((res) => {
+      event.sender.send('persons', res)
+    })
   })
 }
 
