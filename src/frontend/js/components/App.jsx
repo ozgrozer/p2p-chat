@@ -25,11 +25,34 @@ class App extends React.Component {
     })
   }
 
+  addPersonToList (data) {
+    this.props.dispatch({
+      type: 'ADD_PERSON_TO_LIST',
+      payload: data
+    })
+  }
+
   componentDidMount () {
     ipcRenderer.send('getPersons')
     ipcRenderer.on('persons', (event, arg) => {
       this.updatePersonsList(arg)
     })
+  }
+
+  addFakePerson () {
+    const fakePerson = {
+      id: 21,
+      name: 21,
+      statusMessage: 21,
+      messages: [
+        { direction: 'out', text: 'outgoing ' + 21, time: 1519134357 },
+        { direction: 'in', text: 'incoming ' + 21, time: 1519134358 }
+      ],
+      lastMessage: 'Message ' + 21,
+      lastMessageTime: 'Today',
+      profilePicture: `https://randomuser.me/api/portraits/men/21.jpg`
+    }
+    this.addPersonToList(fakePerson)
   }
 
   render () {
@@ -48,25 +71,23 @@ class App extends React.Component {
             <Persons />
           </div>
 
-          {
-            (countPersons) ? (
-              <div id='right'>
-                <Messages />
+          {(countPersons) ? (
+            <div id='right'>
+              <Messages />
 
-                <div id='write'>
-                  <input type='text' placeholder='Write a message...' />
+              <div id='write'>
+                <input type='text' placeholder='Write a message...' />
+              </div>
+            </div>
+          ) : (
+            <div id='right'>
+              <div className='acjc'>
+                <div id='addSomeone' onClick={this.addFakePerson.bind(this)}>
+                  Add someone...
                 </div>
               </div>
-            ) : (
-              <div id='right'>
-                <div className='acjc'>
-                  <div id='addSomeone'>
-                    Add someone...
-                  </div>
-                </div>
-              </div>
-            )
-          }
+            </div>
+          )}
         </div>
       </div>
     )

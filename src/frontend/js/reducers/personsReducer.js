@@ -11,6 +11,9 @@ const personsReducer = (state = initialValues, action) => {
     case 'UPDATE_PERSONS_LIST':
       state = {...state, list: action.payload}
       break
+    case 'ADD_PERSON_TO_LIST':
+      state = {...state, list: [...state.list, action.payload]}
+      break
   }
 
   return state
