@@ -6,7 +6,7 @@ class MyProfile extends React.Component {
       <div id='myProfile'>
         <div className='person'>
           <div className='personLeft'>
-            <img className='personPicture' src='https://randomuser.me/api/portraits/men/11.jpg' />
+            <img className='personProfilePicture' src='https://randomuser.me/api/portraits/men/11.jpg' />
           </div>
 
           <div className='personRight'>

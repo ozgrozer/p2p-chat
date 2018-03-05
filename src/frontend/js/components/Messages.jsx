@@ -27,8 +27,8 @@ class Messages extends React.Component {
           <div className='person'>
             <div className='personLeft'>
               <img
-                className='personPicture'
-                src={`https://randomuser.me/api/portraits/men/${this.props.selectedPersonId}.jpg`}
+                className='personProfilePicture'
+                src={person.profilePicture}
               />
             </div>
 

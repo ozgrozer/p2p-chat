@@ -25,7 +25,8 @@ module.exports = new Promise((resolve, reject) => {
           { direction: 'in', text: 'incoming ' + row.id, time: 1519134358 }
         ],
         lastMessage: 'Message ' + row.id,
-        lastMessageTime: 'Today'
+        lastMessageTime: 'Today',
+        profilePicture: `https://randomuser.me/api/portraits/men/${row.id}.jpg`
       }
     })
 

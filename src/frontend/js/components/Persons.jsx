@@ -27,7 +27,7 @@ class Persons extends React.Component {
           onClick={this.changeSelectedPerson.bind(this, person.id)}
         >
           <div className='personLeft'>
-            <img className='personPicture' src={`https://randomuser.me/api/portraits/men/${person.id}.jpg`} />
+            <img className='personProfilePicture' src={person.profilePicture} />
           </div>
 
           <div className='personRight'>
