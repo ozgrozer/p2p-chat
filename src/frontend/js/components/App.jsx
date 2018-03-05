@@ -33,6 +33,8 @@ class App extends React.Component {
   }
 
   render () {
+    const countPersons = Object.keys(this.props.persons).length
+
     return (
       <div id='root2'>
         <div id='title'>
@@ -46,13 +48,25 @@ class App extends React.Component {
             <Persons />
           </div>
 
-          <div id='right'>
-            <Messages />
+          {
+            (countPersons) ? (
+              <div id='right'>
+                <Messages />
 
-            <div id='write'>
-              <input type='text' placeholder='Write a message...' />
-            </div>
-          </div>
+                <div id='write'>
+                  <input type='text' placeholder='Write a message...' />
+                </div>
+              </div>
+            ) : (
+              <div id='right'>
+                <div className='acjc'>
+                  <div id='addSomeone'>
+                    Add someone...
+                  </div>
+                </div>
+              </div>
+            )
+          }
         </div>
       </div>
     )

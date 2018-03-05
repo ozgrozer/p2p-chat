@@ -42,6 +42,13 @@ body, html, #root, #root2 {
   height: 100%;
 }
 
+.acjc {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #title {
   text-align: center;
   height: $titleHeight;
@@ -137,6 +144,11 @@ body, html, #root, #root2 {
   float: left;
   height: 100%;
   width: $rightWidth;
+
+  #addSomeone {
+    color: $gray2;
+    font-size: 40px;
+  }
 
   #messagesContainer {
     height: $personsHeight;
