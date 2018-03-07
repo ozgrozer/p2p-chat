@@ -19,8 +19,8 @@ const ipcRenderer = electron.ipcRenderer
 
 class App extends React.Component {
   componentDidMount () {
-    ipcRenderer.send('getPersons')
-    ipcRenderer.on('persons', (event, data) => {
+    ipcRenderer.send('getPersonsAndMessages')
+    ipcRenderer.on('personsAndMessages', (event, data) => {
       this.props.dispatch({
         type: 'UPDATE_PERSONS_LIST',
         payload: data
