@@ -27,11 +27,13 @@ const getMessages = (persons) => {
       if (err) throw err
 
       rows.forEach((row) => {
-        persons[row.personId].messages[row.id] = {
-          id: row.id,
-          direction: row.direction,
-          text: row.text,
-          time: row.time
+        if (persons[row.personId]) {
+          persons[row.personId].messages[row.id] = {
+            id: row.id,
+            direction: row.direction,
+            text: row.text,
+            time: row.time
+          }
         }
       })
 
