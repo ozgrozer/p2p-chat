@@ -20,10 +20,15 @@ const ipcRenderer = electron.ipcRenderer
 class App extends React.Component {
   componentDidMount () {
     ipcRenderer.send('getPersons')
-    ipcRenderer.on('persons', (event, arg) => {
+    ipcRenderer.on('persons', (event, data) => {
       this.props.dispatch({
         type: 'UPDATE_PERSONS_LIST',
-        payload: arg
+        payload: data
+      })
+
+      this.props.dispatch({
+        type: 'CHANGE_SELECTED_PERSON',
+        payload: data[0].id
       })
     })
   }
