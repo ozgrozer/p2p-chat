@@ -9,6 +9,18 @@ const appFolderPath = path.join(userFolderPath, appName)
 const dbFilePath = path.join(appFolderPath, 'db.sqlite')
 const db = new sqlite3.Database(dbFilePath)
 
+const lastMessage = (persons) => {
+  return new Promise((resolve, reject) => {
+    persons.forEach((person) => {
+      const lastItemId = Object.keys(person.messages).pop()
+      persons[person.id].lastMessage = person.messages[lastItemId].text
+      persons[person.id].lastMessageTime = person.messages[lastItemId].time
+    })
+
+    resolve(persons)
+  })
+}
+
 const getMessages = (persons) => {
   return new Promise((resolve, reject) => {
     db.all('select id, personId, direction, text, time from messages', (err, rows) => {
@@ -41,8 +53,8 @@ const getPersons = () => {
           name: row.name,
           statusMessage: row.statusMessage,
           messages: [],
-          lastMessage: 'Message ' + row.id,
-          lastMessageTime: 'Today',
+          lastMessage: '',
+          lastMessageTime: '',
           profilePicture: `https://randomuser.me/api/portraits/men/${row.id}.jpg`
         }
       })
@@ -56,6 +68,7 @@ const getPersonsAndMessages = () => {
   return new Promise((resolve, reject) => {
     getPersons()
       .then(getMessages)
+      .then(lastMessage)
       .then((res) => {
         resolve(res)
       })
