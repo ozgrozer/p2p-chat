@@ -18,24 +18,13 @@ const ipcRenderer = electron.ipcRenderer
 })
 
 class App extends React.Component {
-  updatePersonsList (data) {
-    this.props.dispatch({
-      type: 'UPDATE_PERSONS_LIST',
-      payload: data
-    })
-  }
-
-  addPersonToList (data) {
-    this.props.dispatch({
-      type: 'ADD_PERSON_TO_LIST',
-      payload: data
-    })
-  }
-
   componentDidMount () {
     ipcRenderer.send('getPersons')
     ipcRenderer.on('persons', (event, arg) => {
-      this.updatePersonsList(arg)
+      this.props.dispatch({
+        type: 'UPDATE_PERSONS_LIST',
+        payload: arg
+      })
     })
   }
 
@@ -52,7 +41,16 @@ class App extends React.Component {
       lastMessageTime: 'Today',
       profilePicture: `https://randomuser.me/api/portraits/men/21.jpg`
     }
-    this.addPersonToList(fakePerson)
+
+    this.props.dispatch({
+      type: 'ADD_PERSON_TO_LIST',
+      payload: fakePerson
+    })
+
+    this.props.dispatch({
+      type: 'CHANGE_SELECTED_PERSON',
+      payload: 21
+    })
   }
 
   render () {

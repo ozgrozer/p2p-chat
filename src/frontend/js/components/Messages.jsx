@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 
 class Messages extends React.Component {
   render () {
-    const person = this.props.persons[this.props.selectedPersonId] ||
+    const person = this.props.persons.find(person => person.id === this.props.selectedPersonId) ||
       { name: '', statusMessage: '', messages: [] }
 
     const messages = person.messages.map((message, i) => {
