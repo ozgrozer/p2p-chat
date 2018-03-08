@@ -1,11 +1,16 @@
+@import 'fontawesome-all.css';
+
 $titleHeight: 22px;
 $leftWidth: 320px;
 $rightWidth: calc(100% - #{$leftWidth});
-$profileAndWriteHeight: 80px;
-$personsHeight: calc(100% - #{$profileAndWriteHeight});
-$messagesHeight: calc(100% - #{$profileAndWriteHeight});
+$profileHeight: 80px;
+$writeAMessageHeight: 80px;
+$searchInputHeight: 50px;
+$searchIconFontSize: 11px;
+$personsHeight: calc(100% - #{$profileHeight + $searchInputHeight});
+$messagesHeight: calc(100% - #{$profileHeight + $writeAMessageHeight});
 
-$personHeight: $profileAndWriteHeight;
+$personHeight: $profileHeight;
 $personLeftAndRightPadding: 30px;
 $personLeftWidth: 50px;
 $personRightWidth: calc(100% - #{$personLeftWidth});
@@ -14,12 +19,12 @@ $personNameLineHeight: $personLeftWidth / 2;
 $fontSize1: 13px; /* default font size */
 $fontSize2: 10px; /* person's last message time */
 
-$gray1: #eee; /* title background color */
+$gray1: #eeeeee; /* title background color */
 $gray2: #e8e8e8; /* border color */
 $gray3: #f7f7f7; /* selected person background color */
-$gray4: #aaa; /* my status color, person status color, person last message color, person last message time color */
+$gray4: #aaaaaa; /* my status color, person status color, person last message color, person last message time color, add button color */
 $gray5: #e5e5ea; /* incoming message background color */
-$blue1: #39a1f9; /* or #47b7fb, outgoing message background color */
+$blue1: #39a1f9; /* outgoing message background color */
 
 * {
   box-sizing: border-box;
@@ -36,6 +41,10 @@ body {
 
 body, input {
   font-size: $fontSize1;
+}
+
+input {
+  outline: none;
 }
 
 body, html, #root, #root2 {
@@ -130,6 +139,44 @@ body, html, #root, #root2 {
     }
   }
 
+  #search {
+    width: 100%;
+    height: $searchInputHeight;
+    border-bottom: 1px solid $gray2;
+
+    #searchIcon {
+      float: left;
+      color: $gray4;
+      text-align: center;
+      font-size: $searchIconFontSize;
+      width: $searchIconFontSize * 2;
+      height: $searchIconFontSize * 2;
+      line-height: $searchIconFontSize * 2;
+      margin-left: $personLeftAndRightPadding - ($searchIconFontSize / 2);
+      margin-top: (($searchInputHeight - ($searchIconFontSize * 2)) / 2) + 0;
+    }
+
+    input {
+      float: left;
+      height: 100%;
+      border: none;
+      padding: 0 8px;
+      width: calc(100% - #{(($personLeftAndRightPadding - ($searchIconFontSize / 2)) + ($searchIconFontSize * 2)) * 2});
+    }
+
+    #addIcon {
+      float: left;
+      color: $gray4;
+      text-align: center;
+      font-size: $searchIconFontSize;
+      width: $searchIconFontSize * 2;
+      height: $searchIconFontSize * 2;
+      line-height: $searchIconFontSize * 2;
+      margin-right: $personLeftAndRightPadding - ($searchIconFontSize / 2);
+      margin-top: (($searchInputHeight - ($searchIconFontSize * 2)) / 2) + 0;
+    }
+  }
+
   #persons {
     overflow-y: auto;
     height: $personsHeight;
@@ -150,48 +197,43 @@ body, html, #root, #root2 {
     font-size: 40px;
   }
 
-  #messagesContainer {
-    height: $personsHeight;
+  #selectedPersonProfile {
+    border-bottom: 1px solid $gray2;
+  }
 
-    #selectedPersonProfile {
-      border-bottom: 1px solid $gray2;
-    }
+  #messages {
+    overflow-y: auto;
+    height: $messagesHeight;
+    padding: $personLeftAndRightPadding;
 
-    #messages {
-      overflow-y: auto;
-      height: $messagesHeight;
-      padding: $personLeftAndRightPadding;
+    .message {
+      clear: both;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      max-width: calc(100% - 30%);
 
-      .message {
-        clear: both;
-        padding: 10px 15px;
-        border-radius: 6px;
-        margin-bottom: 15px;
-        max-width: calc(100% - 30%);
+      &.in {
+        float: left;
+        background-color: $gray5;
+      }
 
-        &.in {
-          float: left;
-          background-color: $gray5;
-        }
-
-        &.out {
-          color: #fff;
-          float: right;
-          background-color: $blue1;
-        }
+      &.out {
+        color: #fff;
+        float: right;
+        background-color: $blue1;
       }
     }
   }
 
   #write {
+    height: $writeAMessageHeight;
     border-top: 1px solid $gray2;
-    height: $profileAndWriteHeight;
 
     input {
       width: 100%;
       height: 100%;
       border: none;
-      outline: none;
       padding: 0 $personLeftAndRightPadding;
     }
   }

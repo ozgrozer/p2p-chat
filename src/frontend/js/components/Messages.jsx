@@ -22,7 +22,7 @@ class Messages extends React.Component {
     })
 
     return (
-      <div id='messagesContainer'>
+      <div id='right'>
         <div id='selectedPersonProfile'>
           <div className='person'>
             <div className='personLeft'>
@@ -46,6 +46,10 @@ class Messages extends React.Component {
 
         <div id='messages'>
           {messages}
+        </div>
+
+        <div id='write'>
+          <input type='text' placeholder='Write a message...' />
         </div>
       </div>
     )

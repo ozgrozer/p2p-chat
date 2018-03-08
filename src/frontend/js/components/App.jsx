@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import MyProfile from './MyProfile'
+import Search from './Search'
 import Persons from './Persons'
 import Messages from './Messages'
 
@@ -33,31 +34,6 @@ class App extends React.Component {
     })
   }
 
-  addFakePerson () {
-    const fakePerson = {
-      id: 21,
-      name: 21,
-      statusMessage: 21,
-      messages: [
-        { direction: 'out', text: 'outgoing ' + 21, time: 1519134357 },
-        { direction: 'in', text: 'incoming ' + 21, time: 1519134358 }
-      ],
-      lastMessage: 'Message ' + 21,
-      lastMessageTime: 'Today',
-      profilePicture: `https://randomuser.me/api/portraits/men/21.jpg`
-    }
-
-    this.props.dispatch({
-      type: 'ADD_PERSON_TO_LIST',
-      payload: fakePerson
-    })
-
-    this.props.dispatch({
-      type: 'CHANGE_SELECTED_PERSON',
-      payload: 21
-    })
-  }
-
   render () {
     const countPersons = Object.keys(this.props.persons).length
 
@@ -71,21 +47,17 @@ class App extends React.Component {
           <div id='left'>
             <MyProfile />
 
+            <Search />
+
             <Persons />
           </div>
 
           {(countPersons) ? (
-            <div id='right'>
-              <Messages />
-
-              <div id='write'>
-                <input type='text' placeholder='Write a message...' />
-              </div>
-            </div>
+            <Messages />
           ) : (
             <div id='right'>
               <div className='acjc'>
-                <div id='addSomeone' onClick={this.addFakePerson.bind(this)}>
+                <div id='addSomeone'>
                   Add someone...
                 </div>
               </div>
