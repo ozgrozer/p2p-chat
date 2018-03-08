@@ -13,8 +13,10 @@ const lastMessage = (persons) => {
   return new Promise((resolve, reject) => {
     persons.forEach((person) => {
       const lastItemId = Object.keys(person.messages).pop()
-      persons[person.id].lastMessage = person.messages[lastItemId].text
-      persons[person.id].lastMessageTime = person.messages[lastItemId].time
+      if (lastItemId) {
+        persons[person.id].lastMessage = person.messages[lastItemId].text
+        persons[person.id].lastMessageTime = person.messages[lastItemId].time
+      }
     })
 
     resolve(persons)
