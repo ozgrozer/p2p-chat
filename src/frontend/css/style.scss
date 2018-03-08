@@ -22,8 +22,9 @@ $fontSize2: 10px; /* person's last message time */
 $gray1: #eeeeee; /* title background color */
 $gray2: #e8e8e8; /* border color */
 $gray3: #f7f7f7; /* selected person background color */
-$gray4: #aaaaaa; /* my status color, person status color, person last message color, person last message time color, add button color */
+$gray4: #aaaaaa; /* my status color, person status color, person last message color, person last message time color */
 $gray5: #e5e5ea; /* incoming message background color */
+$gray6: #757575; /* search icon color, add icon color */
 $blue1: #39a1f9; /* outgoing message background color */
 
 * {
@@ -146,7 +147,7 @@ body, html, #root, #root2 {
 
     #searchIcon {
       float: left;
-      color: $gray4;
+      color: $gray6;
       text-align: center;
       font-size: $searchIconFontSize;
       width: $searchIconFontSize * 2;
@@ -166,7 +167,7 @@ body, html, #root, #root2 {
 
     #addIcon {
       float: left;
-      color: $gray4;
+      color: $gray6;
       text-align: center;
       font-size: $searchIconFontSize;
       width: $searchIconFontSize * 2;
